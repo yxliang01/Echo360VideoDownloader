@@ -1,0 +1,25 @@
+{
+    "manifest_version": 2,
+
+    "name": "Echo360 Video Downloader",
+    "description": "This extension allows you to download all the echo360 video available in current page",
+    "version": "1.0",
+
+    "browser_action": {
+        "default_icon": "icon.png",
+        "default_popup": "popup.html"
+    },
+    "permissions": [
+        "activeTab",
+        "downloads"
+    ],
+    "content_scripts": [{
+        "matches": ["https://content.lecture.unimelb.edu.au/*"],
+        "js": ["node_modules/jquery/dist/jquery.min.js", "content_script.js"],
+        "all_frames": true
+    }],
+    "background": {
+        "scripts": ["eventpage.js"],
+        "persistent": false
+    }
+}

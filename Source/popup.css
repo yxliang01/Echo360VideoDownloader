@@ -1,0 +1,13 @@
+body
+{
+	width: 300px;
+	height: 120px;
+}
+
+#status
+{
+	width: 300px;
+	height: 20px;
+	text-align: center;
+	color: green;
+}
