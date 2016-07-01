@@ -1,11 +1,12 @@
 {
     "manifest_version": 2,
 
-    "name": "Echo360 Video Downloader",
-    "description": "This extension allows you to download all the echo360 video available in current page",
+    "name": "Unimelb Recording Downloader",
+    "description": "This extension allows you to download all the recordings available in current page",
     "version": "1.0",
 
-    "browser_action": {
+    "page_action": {
+        "default_title": "Download all the recordings available in current page!",
         "default_icon": "icon.png",
         "default_popup": "popup.html"
     },
