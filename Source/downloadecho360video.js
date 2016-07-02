@@ -20,4 +20,6 @@ function postDownloadMessageToAllChildFrames(curr_window) {
         postDownloadMessageToAllChildFrames(curr_window.frames[i]);
     }
 
+    console.log($($("#echo-tabs-wrapper > div.details-contents-wrapper > div > div > div > div > table > tbody > tr:nth-child(1) > td.info-thumb > div > img")));
+
 }

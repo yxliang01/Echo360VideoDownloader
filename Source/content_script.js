@@ -12,6 +12,7 @@ function checkWhetherLoaded() {
 
 }
 
+
 function downloadVideos(e) {
     if (e.originalEvent.data != 'Start downloading') {
         return;
