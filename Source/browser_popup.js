@@ -25,7 +25,6 @@ $(document).ready(function() {
 
         });
     });
-    console.log();
 });
 
 
@@ -42,11 +41,21 @@ function DownloadVideos() {
 function injectScript() {
     chrome.tabs.executeScript(null, {
         file: "bower_components/jquery/dist/jquery.min.js",
-        allFrames: false
+        allFrames: true,
+        runAt: "document_end"
+    }, function injectDownloadingScript() {
+        chrome.tabs.executeScript(null, {
+            file: "downloadecho360video.js",
+            allFrames: true,
+            runAt: "document_end"
+
+        }, doneExecutingDownloadingScript);
     });
 
-    chrome.tabs.executeScript(null, {
-        file: "downloadecho360video.js",
-        allFrames: false
-    });
+}
+
+
+function doneExecutingDownloadingScript(results)
+{
+    if 
 }

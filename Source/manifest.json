@@ -13,19 +13,15 @@
     "permissions": [
         "activeTab",
         "downloads"
-    ],
-    "content_scripts": [{
-        "matches": ["https://content.lecture.unimelb.edu.au/*"],
-        "js": ["bower_components/jquery/dist/jquery.min.js", "content_script.js"],
-        "all_frames": true
-    }, {
-        "matches": ["https://app.lms.unimelb.edu.au/webapps/blackboard/content/contentWrapper.jsp*"],
-        "js": ["bower_components/jquery/dist/jquery.min.js", "content_script_lecture.js"],
-        "all_frames": false
-    }]
+    ]
+    // "content_scripts": [{
+    //     "matches": ["https://content.lecture.unimelb.edu.au/*"],
+    //     "js": ["bower_components/jquery/dist/jquery.min.js", "content_script.js"],
+    //     "all_frames": true
+    // }]
 
-    // "background": {
-    //     "scripts": ["eventpage.js"],
-    //     "persistent": false
-    // }
+    ,"background": {
+        "scripts": ["eventpage.js"],
+        "persistent": false
+    }
 }
