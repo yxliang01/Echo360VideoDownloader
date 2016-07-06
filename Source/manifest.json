@@ -8,7 +8,7 @@
     "browser_action": {
         "default_title": "Download all the recordings available in current page!",
         "default_icon": "icon.png",
-        "default_popup": "popup.html"
+        "default_popup": "browser_popup.html"
     },
     "permissions": [
         "activeTab",
@@ -18,9 +18,14 @@
         "matches": ["https://content.lecture.unimelb.edu.au/*"],
         "js": ["bower_components/jquery/dist/jquery.min.js", "content_script.js"],
         "all_frames": true
-    }],
-    "background": {
-        "scripts": ["eventpage.js"],
-        "persistent": false
-    }
+    }, {
+        "matches": ["https://app.lms.unimelb.edu.au/webapps/blackboard/content/contentWrapper.jsp*"],
+        "js": ["bower_components/jquery/dist/jquery.min.js", "content_script_lecture.js"],
+        "all_frames": false
+    }]
+
+    // "background": {
+    //     "scripts": ["eventpage.js"],
+    //     "persistent": false
+    // }
 }
