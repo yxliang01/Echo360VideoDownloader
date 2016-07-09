@@ -20,24 +20,22 @@ function checkWhetherLoaded() {
 function downloadVideos() {
 
     if (typeof $ === 'undefined')
-         return;
+        return false;
 
     coursename
         = $('#course-info').text();
 
     //Start looking for download URL
 
-    var downloadurls = [];
-    var count_video = 1;
-    var curr_selector = '';
-    var downloadurl = '';
-    var UUID = '';
-    var tmp;
-    var folderId;
-    var yetAnotherId;
-
     console.log("start downloading...");
-    $('*[id^="li-"] > div.echo-li-left-wrapper > div.echo-thumbnail > div > img').each(downloadARecording);
+    var elements = $('*[id^="li-"] > div.echo-li-left-wrapper > div.echo-thumbnail > div > img');
+
+    if (elements.length === 0)
+        return false;
+    else {
+        elements.each(downloadARecording);
+        return true;
+    }
 
 }
 
@@ -49,10 +47,14 @@ function downloadARecording(idx, val) {
     } else {
 
         var partURL = matching[1];
+        var name_selector = "#li-" + (idx+1) + " > div.echo-li-left-wrapper > div.title-wrapper > div.echo-meta-wrapper > div.echo-date";
+        var name_recording = $(name_selector).text();
+
+        name_recording = name_recording.replace(':', '.');
 
         chrome.runtime.sendMessage({
             url: 'https://download.lecture.unimelb.edu.au//' + partURL + '/audio-vga.m4v',
-            filename: coursename + '/Recording' + count_video + '.m4v',
+            filename: coursename + '/' + name_recording + '.m4v',
             conflictAction: "overwrite"
         });
 

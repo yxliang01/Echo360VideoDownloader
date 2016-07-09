@@ -1,22 +1,29 @@
-body
-{
-	width: 300px;
-	height: 120px;
+body {
+    width: 300px;
+    height: 120px;
 }
 
-#status
-{
-	width: 300px;
-	height: 20px;
-	text-align: center;
+#status {
+    width: 300px;
+    height: 25vh;
+    text-align: center;
+    font-size: 5vw;
 }
 
-.invalid
-{
-	color: red;
+.invalid {
+    color: red;
 }
 
-.successful
-{
-	color:green;
+.successful {
+    color: green;
+}
+
+#btn_download {
+	margin-top: 3vh;
+    color: white;
+    text-align: center;
+    background-color: green;
+    border-radius: 3px;
+    border: none;
+    font-size: 7vw;
 }

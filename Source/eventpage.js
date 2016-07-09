@@ -8,5 +8,13 @@ chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
 
 function donwloadVideo(message) {
     // console.info('Message ' + JSON.stringify(message) + '	start downloading');
-    chrome.downloads.download(message);
+    chrome.downloads.download(message, whenDownloadStopped);
+}
+
+function whenDownloadStopped(downloadId) {
+
+	if(downloadId === undefined) {
+		//Do something
+	}
+
 }

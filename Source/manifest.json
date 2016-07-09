@@ -12,7 +12,8 @@
     },
     "permissions": [
         "activeTab",
-        "downloads"
+        "downloads",
+        "https://*/*"
     ]
     // "content_scripts": [{
     //     "matches": ["https://content.lecture.unimelb.edu.au/*"],
