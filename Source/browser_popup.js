@@ -72,7 +72,14 @@ function doneExecutingDownloadingScript(results) {
         $("#status").successful();
 
     } else {
-        $("#status").text("Download failed");
+        var arr_err_msg = results.filter(function key(ele, idx, arr) {
+            return (ele !== false && ele !== true)
+        });
+        if (arr_err_msg.length === 0) {
+            $("#status").text("Download failed");
+        } else {
+            $("#status").text(arr_err_msg[0]);
+        }
         $("#status").invalid();
     }
 }

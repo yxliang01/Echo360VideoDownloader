@@ -33,8 +33,18 @@ function downloadVideos() {
     if (elements.length === 0)
         return false;
     else {
-        elements.each(downloadARecording);
-        return true;
+        var str_num_results = $("#echoes-header-toolbar-right").text();
+        var matchings = str_num_results.match("([0-9]+) of ([0-9]+) Results");
+
+        if (matchings.length === 0) {
+            return "This page hasn't completely loaded yet";
+        } else if (matchings[1] !== matchings[2]) {
+            return "Please scroll down the recording selection list in order to download";
+        } else {
+            elements.each(downloadARecording);
+            return true;
+        }
+
     }
 
 }
@@ -47,7 +57,7 @@ function downloadARecording(idx, val) {
     } else {
 
         var partURL = matching[1];
-        var name_selector = "#li-" + (idx+1) + " > div.echo-li-left-wrapper > div.title-wrapper > div.echo-meta-wrapper > div.echo-date";
+        var name_selector = "#li-" + (idx + 1) + " > div.echo-li-left-wrapper > div.title-wrapper > div.echo-meta-wrapper > div.echo-date";
         var name_recording = $(name_selector).text();
 
         name_recording = name_recording.replace(':', '.');

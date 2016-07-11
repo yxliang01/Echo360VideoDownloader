@@ -1,7 +1,7 @@
 Unimelb Lecture Recording Downloader
 =====
 
-This Google Chrome extension allows you to download all the Unimelb lecture recording that is available in current page.
+This Google Chrome extension allows you to download all the Unimelb lecture recording that is available in current recording download page on the LMS.
 
 How to use
 -----
@@ -16,4 +16,6 @@ TODO
 -----
 
 - Support all Echo360 recording download pages
-- Error Handling 
+- Error Handling
+- Provides different naming options for recordings
+- Check the integrity of videos when download finished
