@@ -2,6 +2,7 @@ Unimelb Lecture Recording Downloader
 =====
 
 This Google Chrome extension allows you to download all the Unimelb lecture recording that is available in current recording download page on the LMS.
+At the end of the semester, you can backup all the recording easily using this!
 
 How to use
 -----
