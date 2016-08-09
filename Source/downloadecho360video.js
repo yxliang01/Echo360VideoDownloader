@@ -51,7 +51,7 @@ function downloadVideos() {
 
 
 function downloadARecording(idx, val) {
-    if ((matching = $(val).attr('src').match('(?:https:\/\/download.lecture.unimelb.edu.au\/\/)([A-Za-z0-9\-\/]+)(?:\/synopsis\/low\/[0-9]+.jpg)')) === null) {
+    if ((matching = $(val).attr('src').match('(?:https:\/\/download\.lecture\.unimelb\.edu\.au\/\/)([A-Za-z0-9\-\/]+)(?:\/synopsis\/low\/[0-9]+\.jpg)')) === null) {
         alert('Error occured when trying to download the video!');
         return;
     } else {
