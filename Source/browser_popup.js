@@ -15,7 +15,8 @@ $(document).ready(function() {
     $("button#btn_download").click(function() {
 
         chrome.tabs.query({
-            active: true
+            active: true,
+            currentWindow: true
         }, function(tabs) {
 
             if (tabs[0].url.indexOf("https://app.lms.unimelb.edu.au/webapps/blackboard/content/contentWrapper.jsp") != -1) {
