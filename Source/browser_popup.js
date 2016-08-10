@@ -5,7 +5,7 @@ $.fn.invalid = function status_invlid() {
     this.addClass('invalid');
 };
 
-$.fn.successful = function status_successful(){
+$.fn.successful = function status_successful() {
     this.removeClass('invalid');
     this.addClass('successful');
 };
@@ -44,7 +44,9 @@ function CheckAndDownloadVideos(tabs) {
         $("#status").invalid();
         return;
     }
-    if (tabs[0].url.indexOf("https://app.lms.unimelb.edu.au/webapps/blackboard/content/contentWrapper.jsp") != -1) {
+    var current_url = tabs[0].url;
+    if (current_url.indexOf("https://app.lms.unimelb.edu.au/webapps/blackboard/content/contentWrapper.jsp") != -1 ||
+        current_url.indexOf("https://mulo-portal.lib.monash.edu/ess/portal/section/") != -1) {
 
         if (tabs[0].status != "complete") {
             $("#status").text("This page is still loading, please click the download button later.");
@@ -56,7 +58,7 @@ function CheckAndDownloadVideos(tabs) {
         }
 
     } else {
-        $("#status").text("This is not Unimelb recording download page!");
+        $("#status").text("This is not Unimelb or Monash recording download page!");
         $("#status").invalid();
     }
 

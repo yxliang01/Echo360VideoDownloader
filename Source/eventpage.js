@@ -14,7 +14,7 @@ chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
 
 
 function donwloadVideo(message) {
-    // chrome.downloads.download(message, whenDownloadStatusChanged);
+    chrome.downloads.download(message, whenDownloadStatusChanged);
 }
 
 function whenDownloadStatusChanged(downloadId) {

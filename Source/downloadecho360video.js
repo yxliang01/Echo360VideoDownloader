@@ -57,19 +57,19 @@ function downloadARecording(idx, val) {
 
     var matching;
 
-    if ((matching = $(val).attr('src').match('(?:https:\/\/download.lecture.unimelb.edu.au\/\/)([A-Za-z0-9\-\/]+)(?:\/synopsis\/low\/[0-9]+.jpg)')) === null) {
+    if ((matching = $(val).attr('src').match('(https:\/\/(?:download\.lecture\.unimelb\.edu\.au\/|mulo-media\.lib\.monash\.edu)\/[A-Za-z0-9\-\/]+)(?:\/synopsis\/low\/[0-9]+\.jpg)')) === null){
         alert('Error occured when trying to download the video!');
         return;
     } else {
 
-        var partURL = matching[1];
+        var part1URL = matching[1];
         var name_selector = "#li-" + (idx + 1) + " > div.echo-li-left-wrapper > div.title-wrapper > div.echo-meta-wrapper > div.echo-date";
         var name_recording = $(name_selector).text();
 
         name_recording = name_recording.replace(':', '.');
 
         chrome.runtime.sendMessage({
-            url: 'https://download.lecture.unimelb.edu.au//' + partURL + '/audio-vga.m4v',
+            url: part1URL + '/audio-vga.m4v',
             filename: coursename + '/' + name_recording + '.m4v',
             conflictAction: "overwrite"
         });
