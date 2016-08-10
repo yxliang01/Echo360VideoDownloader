@@ -1,0 +1,8 @@
+{
+    "globals": {
+        "chrome": true,
+        "$": true,
+        "console": true,
+        "alert":true
+    }
+}

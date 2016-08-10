@@ -1,3 +1,5 @@
+'use strict';
+
 var coursename;
 
 
@@ -6,33 +8,34 @@ downloadVideos();
 
 //Functions
 
-function checkWhetherLoaded() {
-    if ($('#echoes-list').length != 0) {
-        console.info(window.location.href + '      has lecture info!!!');
-        return true;
-    } else {
-        return false;
-    }
+// function checkWhetherLoaded() {
 
-}
+//     if ($('#echoes-list').length !== 0) {
+//         console.info(window.location.href + '      has lecture info!!!');
+//         return true;
+//     } else {
+//         return false;
+//     }
+
+// }
 
 
 function downloadVideos() {
 
-    if (typeof $ === 'undefined')
+    if (typeof $ === 'undefined') {
         return false;
+    }
 
-    coursename
-        = $('#course-info').text();
+    coursename = $('#course-info').text();
 
     //Start looking for download URL
 
-    console.log("start downloading...");
+    // console.log("start downloading...");
     var elements = $('*[id^="li-"] > div.echo-li-left-wrapper > div.echo-thumbnail > div > img');
 
-    if (elements.length === 0)
+    if (elements.length === 0) {
         return false;
-    else {
+    } else {
         var str_num_results = $("#echoes-header-toolbar-right").text();
         var matchings = str_num_results.match("([0-9]+) of ([0-9]+) Results");
 
@@ -42,7 +45,7 @@ function downloadVideos() {
             return "Please scroll down the recording selection list in order to download";
         } else {
             elements.each(downloadARecording);
-            return true;
+            return elements.length;
         }
 
     }
@@ -51,6 +54,9 @@ function downloadVideos() {
 
 
 function downloadARecording(idx, val) {
+
+    var matching;
+
     if ((matching = $(val).attr('src').match('(?:https:\/\/download.lecture.unimelb.edu.au\/\/)([A-Za-z0-9\-\/]+)(?:\/synopsis\/low\/[0-9]+.jpg)')) === null) {
         alert('Error occured when trying to download the video!');
         return;

@@ -1,15 +1,15 @@
 {
-    "version": "1.0.6",
+    "version": "1.0.9",
     "manifest_version": 2,
 
     "name": "Unimelb Recording Downloader",
     "description": "This extension allows you to download all the recordings available in the current recording download page on the LMS",
     "icons": {
-        "128": "icon128.png"
+        "128": "icon128_unimelb.png"
     },
     "browser_action": {
         "default_title": "Download all the recordings available in current page!",
-        "default_icon": { "128": "icon128.png" },
+        "default_icon": { "128": "icon128_unimelb.png" },
         "default_popup": "browser_popup.html"
     },
     "permissions": [

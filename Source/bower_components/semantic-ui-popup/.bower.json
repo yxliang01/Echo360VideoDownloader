@@ -1,0 +1,40 @@
+{
+  "name": "semantic-ui-popup",
+  "description": "Popup - Semantic UI",
+  "homepage": "http://www.semantic-ui.com",
+  "author": {
+    "name": "Jack Lukic",
+    "web": "http://www.jacklukic.com"
+  },
+  "ignore": [
+    "docs",
+    "node",
+    "server",
+    "spec",
+    "src",
+    "test"
+  ],
+  "keywords": [
+    "semantic",
+    "ui",
+    "css3",
+    "framework"
+  ],
+  "license": [
+    "http://semantic-ui.mit-license.org/"
+  ],
+  "main": [
+    "popup.css"
+  ],
+  "version": "2.2.2",
+  "_release": "2.2.2",
+  "_resolution": {
+    "type": "version",
+    "tag": "2.2.2",
+    "commit": "5cf7786d6afe12cdd01099cc053755949b1d62c9"
+  },
+  "_source": "https://github.com/Semantic-Org/UI-Popup.git",
+  "_target": "^2.2.2",
+  "_originalSource": "semantic-ui-popup",
+  "_direct": true
+}

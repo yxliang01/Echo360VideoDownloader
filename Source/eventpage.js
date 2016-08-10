@@ -1,5 +1,8 @@
+'use strict';
+
 var currentDT = null;
 
+/* jshint unused:vars */
 chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
     if (message.url && message.filename) {
         console.log("Starts downloading 1 video");
@@ -11,7 +14,7 @@ chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
 
 
 function donwloadVideo(message) {
-    chrome.downloads.download(message, whenDownloadStatusChanged);
+    // chrome.downloads.download(message, whenDownloadStatusChanged);
 }
 
 function whenDownloadStatusChanged(downloadId) {
@@ -23,7 +26,7 @@ function whenDownloadStatusChanged(downloadId) {
             isClickable: false,
             requireInteraction: true,
             type: "basic",
-            iconUrl: "icon128.png"
+            iconUrl: "icon128_unimelb.png"
         };
 
         chrome.notifications.create("one download failed", NotificationOptions);
@@ -33,6 +36,7 @@ function whenDownloadStatusChanged(downloadId) {
             id: downloadId
         }, function CheckDownlaod(DIs) {
             if (DIs.State === "complete") {
+
                 currentDT.num_completed++;
                 if (currentDT.num_completed == currentDT.num_files) {
                     var NotificationOptions = {
@@ -53,7 +57,18 @@ function whenDownloadStatusChanged(downloadId) {
 }
 
 
-function DownloadTask(num_files) {
-    this.num_files = num_files;
-    this.num_completed = 0;
-}
+// function DownloadTask(num_files, url) {
+
+//     this.num_files = num_files;
+//     this.num_completed = 0;
+//     this.url = url;
+//     this.size = "loading";
+//     $.ajax({
+//         type: "HEAD",
+//         async: true,
+//         url: url
+//     }).done(function whenFileSizeLoaded(data, status, xhr) {
+//     	//TODO: dunno how to make a constructor function
+//         xhr.getResponseHeader('Content-Length');
+//     });
+// }
