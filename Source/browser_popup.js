@@ -44,23 +44,38 @@ function CheckAndDownloadVideos(tabs) {
         $("#status").invalid();
         return;
     }
-    var current_url = tabs[0].url;
-    if (current_url.indexOf("https://app.lms.unimelb.edu.au/webapps/blackboard/content/contentWrapper.jsp") != -1 ||
-        current_url.indexOf("https://mulo-portal.lib.monash.edu/ess/portal/section/") != -1) {
 
-        if (tabs[0].status != "complete") {
-            $("#status").text("This page is still loading, please click the download button later.");
+    if (tabs[0].status != "complete") {
+        $("#status").text("This page is still loading, please click the download button later.");
+        $("#status").invalid();
+        return;
+    }
+
+    var current_url = tabs[0].url;
+    var haveMatch = false;
+
+    $.getJSON('university.json', function afterGettingUniversityList(data) {
+        $.each(data, function detectUniversity(idx, uni) {
+            if (current_url.indexOf(uni.url) !== -1) {
+                $("#status").text("Start downloading~");
+                $("#status").successful();
+                DownloadVideos();
+                haveMatch = true;
+                return false;
+            } else {
+                return true;
+            }
+        });
+
+        if (!haveMatch) {
+            $("#status").html("This page is unsupported! <br /> Please contact the author (yux6@student.unimelb.edu.au)");
             $("#status").invalid();
-        } else {
-            $("#status").text("Start downloading~");
-            $("#status").successful();
-            DownloadVideos();
         }
 
-    } else {
-        $("#status").text("This is not Unimelb or Monash recording download page!");
-        $("#status").invalid();
-    }
+    });
+
+
+
 
 }
 

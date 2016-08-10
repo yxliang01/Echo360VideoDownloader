@@ -25,7 +25,7 @@ function downloadVideos() {
     if (typeof $ === 'undefined') {
         return false;
     }
-
+    
     coursename = $('#course-info').text();
 
     //Start looking for download URL
@@ -57,7 +57,7 @@ function downloadARecording(idx, val) {
 
     var matching;
 
-    if ((matching = $(val).attr('src').match('(https:\/\/(?:download\.lecture\.unimelb\.edu\.au\/|mulo-media\.lib\.monash\.edu)\/[A-Za-z0-9\-\/]+)(?:\/synopsis\/low\/[0-9]+\.jpg)')) === null){
+    if ((matching = $(val).attr('src').match('([A-Za-z0-9\-\/\.\:]+)(?:\/synopsis\/low\/[0-9]+\.jpg)')) === null){
         alert('Error occured when trying to download the video!');
         return;
     } else {
