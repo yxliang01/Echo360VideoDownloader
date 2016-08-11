@@ -25,8 +25,9 @@ function downloadVideos() {
     if (typeof $ === 'undefined') {
         return false;
     }
-    
-    coursename = $('#course-info').text();
+
+    var course_s = $('#course-info').text();
+    coursename = course_s.replace(/[^a-z0-9 ]/gi, '-');
 
     //Start looking for download URL
 
