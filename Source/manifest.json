@@ -15,8 +15,7 @@
     "permissions": [
         "activeTab",
         "downloads",
-        "https://content.lecture.unimelb.edu.au/ess/echocenter/index.jsp?*",
-        "https://capture.anu.edu.au:8443/ess/echocenter/index.jsp?*",
+        "*",
         "notifications"
     ]
 
