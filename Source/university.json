@@ -1,14 +1,13 @@
 [{
-        "abbr": "Unimelb",
-        "url": "https://app.lms.unimelb.edu.au/webapps/blackboard/content/contentWrapper.jsp",
-        "icon_128": "icon128_unimelb.png"
-    }, {
-        "abbr": "Monash",
-        "url": "https://mulo-portal.lib.monash.edu/ess/portal/section/",
-        "icon_128": "icon128_monash.png"
-    }, {
-        "abbr": "ANU",
-        "url": "https://capture.anu.edu.au:8443/ess/portal/section/",
-        "icon_128": "icon128_anu.png"
-    }
-]
+    "abbr": "Unimelb",
+    "url": "https://app.lms.unimelb.edu.au/webapps/blackboard/content/contentWrapper.jsp",
+    "icon_128": "icon128_unimelb.png"
+}, {
+    "abbr": "Monash",
+    "url": "https://mulo-portal.lib.monash.edu/ess/portal/section/",
+    "icon_128": "icon128_monash.png"
+}, {
+    "abbr": "ANU",
+    "url": "https://capture.anu.edu.au:8443/ess/portal/section/",
+    "icon_128": "icon128_anu.png"
+}]

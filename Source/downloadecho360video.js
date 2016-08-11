@@ -26,8 +26,8 @@ function downloadVideos() {
         return false;
     }
 
-    var course_s = $('#course-info').text();
-    coursename = course_s.replace(/[^a-z0-9 ]/gi, '-');
+    var ori_coursename = $('#course-info').text();
+    coursename = ori_coursename.replace(/[\/:*?"<>|]/gi, '-');
 
     //Start looking for download URL
 
