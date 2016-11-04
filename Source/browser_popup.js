@@ -1,4 +1,3 @@
-'use strict';
 
 $(document).ready(function() {
     $.fn.invalid = function status_invlid() {
@@ -85,40 +84,6 @@ function doneExecutingDownloadingScript(results) {
     }
 }
 
-function changeIcon() {
-    console.log("changing icon...");
-    chrome.declarativeContent.onPageChanged.removeRules(undefined, function() {
-        // chrome.declarativeContent.onPageChanged.addRules([{
-        //     conditions: [
-        //         // Match URL for monash university
-        //         new chrome.declarativeContent.PageStateMatcher({
-        //             pageUrl: {urlContains: "monash"}
-        //         })
-        //     ],
-        //     // Show the page action on this condition
-        //     actions: [chrome.browserAction.setIcon("icon128monash.png")]
-        // }, {
-        //     conditions: [
-        //         // Match URL for ANU
-        //         new chrome.declarativeContent.PageStateMatcher({
-        //             pageUrl: {urlContains: "anu.edu.au"}
-        //         })
-        //     ],
-        //     actions: [chrome.browserAction.setIcon("icon128anu.png")]
-        // }, {
-        //     conditions: [
-        //         // Match URL for RMIT
-        //         new chrome.declarativeContent.PageStateMatcher({
-        //             pageUrl: {urlContains:"rmit"}
-        //         })
-        //     ],
-        //     actions: [chrome.browserAction.setIcon({path: "icon128rmit.png"})]
-        // }
-
-        ]);
-    });
-}
-
 // Reference To: http://stackoverflow.com/questions/28750081/cant-pass-arguments-to-chrome-declarativecontent-seticon
 // Takes a local path to intended 19x19 icon
 //   and passes a correct SetIcon action to the callback
@@ -131,22 +96,99 @@ function createSetIconAction(path, callback) {
     var imageData = ctx.getImageData(0,0,128,128);
     var action = new chrome.declarativeContent.SetIcon({imageData: imageData});
     callback(action);
-  }
-  image.src = chrome.runtime.getURL(path);
+}
+image.src = chrome.runtime.getURL(path);
 }
 
-chrome.declarativeContent.onPageChanged.removeRules(undefined, function () {
-  createSetIconAction("images/icons/green.png", function(setIconAction) {
-    chrome.declarativeContent.onPageChanged.addRules([
-      /* rule1, */
-      {
-        conditions : [
-          new chrome.declarativeContent.PageStateMatcher({
-            pageUrl : {queryContains : 'q1=green'}
-          })
-        ],
-        actions    : [ setIconAction ]
-      }
-    ]);        
-  });
-});
+function changeIcon() {
+    chrome.declarativeContent.onPageChanged.removeRules(undefined, function() {
+
+        // Match URL for ANU
+        createSetIconAction("icon128anu.png", function(setIconAction) {
+            chrome.declarativeContent.onPageChanged.addRules([
+            {
+                conditions : [
+                new chrome.declarativeContent.PageStateMatcher({
+                    pageUrl: {urlContains: "anu.edu.au"}
+                })
+                ],
+                actions    : [ setIconAction ]
+            }
+            ]);
+        });
+
+        // Match URL for monash university
+        createSetIconAction("icon128monash.png", function(setIconAction) {
+            chrome.declarativeContent.onPageChanged.addRules([
+            {
+                conditions : [
+                new chrome.declarativeContent.PageStateMatcher({
+                    pageUrl: {urlContains: "monash"}
+                })
+                ],
+                actions    : [ setIconAction ]
+            }
+            ]);
+        });
+        
+        // Match URL for RMIT
+        createSetIconAction("icon128rmit.png", function(setIconAction) {
+            chrome.declarativeContent.onPageChanged.addRules([
+            {
+                conditions : [
+                new chrome.declarativeContent.PageStateMatcher({
+                    pageUrl: {urlContains: "rmit"}
+                })
+                ],
+                actions    : [ setIconAction ]
+            }
+            ]);
+        })
+    });
+}
+
+    //     chrome.declarativeContent.onPageChanged.addRules([{
+    //         conditions: [
+    //             // Match URL for monash university
+    //             new chrome.declarativeContent.PageStateMatcher({
+    //                 pageUrl: {urlContains: "monash"}
+    //             })
+    //         ],
+    //         // Show the page action on this condition
+    //         actions: [chrome.browserAction.setIcon("icon128monash.png")]
+    //     }, {
+    //         conditions: [
+    //             // Match URL for ANU
+    //             new chrome.declarativeContent.PageStateMatcher({
+    //                 pageUrl: {urlContains: "anu.edu.au"}
+    //             })
+    //         ],
+    //         actions: [chrome.browserAction.setIcon("icon128anu.png")]
+    //     }, {
+    //         conditions: [
+    //             // Match URL for RMIT
+    //             new chrome.declarativeContent.PageStateMatcher({
+    //                 pageUrl: {urlContains:"rmit"}
+    //             })
+    //         ],
+    //         actions: [chrome.browserAction.setIcon({path: "icon128rmit.png"})]
+    //     }
+
+    //     ]);
+    // });
+
+// chrome.declarativeContent.onPageChanged.removeRules(undefined, function () {
+//   createSetIconAction("images/icons/green.png", function(setIconAction) {
+//     chrome.declarativeContent.onPageChanged.addRules([
+//       /* rule1, */
+//       {
+//         conditions : [
+//           new chrome.declarativeContent.PageStateMatcher({
+//             pageUrl : {queryContains : 'q1=green'}
+//           })
+//         ],
+//         actions    : [ setIconAction ]
+//       }
+//     ]);        
+//   });
+// });
