@@ -1,3 +1,51 @@
+'use strict';
+
+var anu_icon = 
+{
+    conditions : [
+    new chrome.declarativeContent.PageStateMatcher({
+        pageUrl: {urlContains: "anu.edu.au"}
+    })
+    ],
+    actions    : [ new chrome.declarativeContent.SetIcon({
+        path : {"128" : "icon128anu.png"}
+    })] 
+};
+
+var monash_icon = 
+{
+    conditions : [
+    new chrome.declarativeContent.PageStateMatcher({
+        pageUrl: {urlContains: "monash"}
+    })
+    ],
+    actions    : [ new chrome.declarativeContent.SetIcon({
+        path : {"128" : "icon128monash.png"}
+    }) ]
+};
+
+var rmit_icon = 
+{
+    conditions : [
+    new chrome.declarativeContent.PageStateMatcher({
+        pageUrl: {urlContains: "rmit"}
+    })
+    ],
+    actions    : [ new chrome.declarativeContent.SetIcon({
+        path : {"128" : "icon128rmit.png"}
+    }) ]
+};
+
+
+chrome.declarativeContent.onPageChanged.removeRules(undefined, function() {
+    chrome.declarativeContent.onPageChanged.addRules([anu_icon]);
+
+// Match URL for monash university
+    chrome.declarativeContent.onPageChanged.addRules([monash_icon]);
+
+// Match URL for RMIT
+    chrome.declarativeContent.onPageChanged.addRules([rmit_icon]);
+});
 
 $(document).ready(function() {
     $.fn.invalid = function status_invlid() {
@@ -101,50 +149,7 @@ image.src = chrome.runtime.getURL(path);
 }
 
 function changeIcon() {
-    chrome.declarativeContent.onPageChanged.removeRules(undefined, function() {
-
-        // Match URL for ANU
-        createSetIconAction("icon128anu.png", function(setIconAction) {
-            chrome.declarativeContent.onPageChanged.addRules([
-            {
-                conditions : [
-                new chrome.declarativeContent.PageStateMatcher({
-                    pageUrl: {urlContains: "anu.edu.au"}
-                })
-                ],
-                actions    : [ setIconAction ]
-            }
-            ]);
-        });
-
-        // Match URL for monash university
-        createSetIconAction("icon128monash.png", function(setIconAction) {
-            chrome.declarativeContent.onPageChanged.addRules([
-            {
-                conditions : [
-                new chrome.declarativeContent.PageStateMatcher({
-                    pageUrl: {urlContains: "monash"}
-                })
-                ],
-                actions    : [ setIconAction ]
-            }
-            ]);
-        });
-        
-        // Match URL for RMIT
-        createSetIconAction("icon128rmit.png", function(setIconAction) {
-            chrome.declarativeContent.onPageChanged.addRules([
-            {
-                conditions : [
-                new chrome.declarativeContent.PageStateMatcher({
-                    pageUrl: {urlContains: "rmit"}
-                })
-                ],
-                actions    : [ setIconAction ]
-            }
-            ]);
-        })
-    });
+   
 }
 
     //     chrome.declarativeContent.onPageChanged.addRules([{
