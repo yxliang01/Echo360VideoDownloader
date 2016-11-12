@@ -1,20 +1,90 @@
 <!doctype html>
 <html lang="en-Us">
-<title>Echo360 Video Downloader</title>
-<link href="browser_popup.css" type="text/css" rel="stylesheet">
-<script src="bower_components/jquery/dist/jquery.min.js"></script>
-<script src="browser_popup.js"></script>
+
+<head>
+    <title>Echo360 Video Downloader</title>
+    <!-- Dependencies -->
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <!-- Semantic UI Button -->
+    <link href="bower_components/semantic-ui-button/button.min.css" type="text/css" rel="stylesheet">
+    <!-- Semantic UI Dropdown -->
+    <script src="bower_components/semantic-ui-dropdown/dropdown.min.js"></script>
+    <link href="bower_components/semantic-ui-dropdown/dropdown.min.css" type="text/css" rel="stylesheet">
+    <!-- Semantic UI Transition -->
+    <script src="bower_components/semantic-ui-transition/transition.min.js"></script>
+    <link href="bower_components/semantic-ui-transition/transition.min.css" type="text/css" rel="stylesheet">
+    <!-- Semantic UI Dimmer -->
+    <script src="bower_components/semantic-ui-dimmer/dimmer.min.js"></script>
+    <link href="bower_components/semantic-ui-dimmer/dimmer.min.css" type="text/css" rel="stylesheet">
+    <!-- Semantic UI Modal -->
+    <script src="bower_components/semantic-ui-modal/modal.min.js"></script>
+    <link href="bower_components/semantic-ui-modal/modal.min.css" type="text/css" rel="stylesheet">
+    <!-- Semantic UI Popup -->
+    <script src="bower_components/semantic-ui-popup/popup.min.js"></script>
+    <link href="bower_components/semantic-ui-popup/popup.min.css" type="text/css" rel="stylesheet">
+    <!-- For this page -->
+    <link href="browser_popup.css" type="text/css" rel="stylesheet">
+    <script src="browser_popup.js"></script>
+</head>
 
 <body>
     <section id="status"></section>
-    <!-- <select id="options_naming">
-        <option value="Counting">Counting</option>
-        <option value="Time">Time</option>
-        <option value="Day">Day</option>
-    </select> -->
-    <!-- <>Add recording numbers<> -->
-    <!-- Choose a directory -->
-    <button id="btn_download">Download all the recordings</button>
+    <form id="mainForm">
+        <div id="options_naming" class="ui dropdown">
+            <input type="hidden" name="NamingOption">
+            <div class="menu">
+                <div class="item" data-value="Counting">Counting</div>
+                <div class="item" data-value="Time">Time</div>
+                <div class="item" data-value="Day_Counting">Day + Counting</div>
+                <div class="item" data-value="Day_Counting">Week + Counting</div>
+                <div class="item" data-value="Custom">Custom</div>
+            </div>
+        </div>
+        <input name="NamingFormat" type="text" hidden="true" />
+    </form>
+    <button id="btn_download" class="ui button green">Download all the recordings</button>
+    <section id="popup_options_naming_Custom" class="ui modal">
+        <div class="content">
+            <section id="popup_options_naming_Custom_tips">
+                <table>
+                    <tr>
+                        <th>Placeholder</th>
+                        <th>Meaning</th>
+                        <th>Example</th>
+                    </tr>
+                    <tr>
+                        <td>%c</td>
+                        <td>Counting Number</td>
+                        <td>1</td>
+                    </tr>
+                    <tr>
+                        <td>%t</td>
+                        <td>Time of the Lecture</td>
+                        <td>11.15AM</td>
+                    </tr>
+                    <tr>
+                        <td>%day</td>
+                        <td>The Delivery Day of the Lecture</td>
+                        <td>30</td>
+                    </tr>
+                    <tr>
+                        <td>%date</td>
+                        <td>The Delivery Date of the Lecture</td>
+                        <td>April-04-2016</td>
+                    </tr>
+                </table>
+                <form>
+                    <div>
+                        <span>Naming Format</span>
+                        <input name="NamingFormat" type="text" />
+                    </div>
+                    <div>
+                        <button class="ui submit button">Okay</button>
+                    </div>
+                </form>
+            </section>
+        </div>
+    </section>
 </body>
 
 </html>
