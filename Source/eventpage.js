@@ -57,3 +57,48 @@ function DownloadTask(num_files) {
     this.num_files = num_files;
     this.num_completed = 0;
 }
+
+// Icon Changing feature
+
+var anu_icon = 
+{
+    conditions : [
+    new chrome.declarativeContent.PageStateMatcher({
+        pageUrl: {urlContains: "anu.edu.au"}
+    })
+    ],
+    actions    : [ new chrome.declarativeContent.SetIcon({
+        path : {"128" : "icon128anu.png"}
+    })] 
+};
+
+var monash_icon = 
+{
+    conditions : [
+    new chrome.declarativeContent.PageStateMatcher({
+        pageUrl: {urlContains: "monash"}
+    })
+    ],
+    actions    : [ new chrome.declarativeContent.SetIcon({
+        path : {"128" : "icon128monash.png"}
+    }) ]
+};
+
+var rmit_icon = 
+{
+    conditions : [
+    new chrome.declarativeContent.PageStateMatcher({
+        pageUrl: {urlContains: "rmit"}
+    })
+    ],
+    actions    : [ new chrome.declarativeContent.SetIcon({
+        path : {"128" : "icon128rmit.png"}
+    }) ]
+};
+
+
+chrome.declarativeContent.onPageChanged.removeRules(undefined, function() {
+    // Change the icon according to the domain name
+    chrome.declarativeContent.onPageChanged.addRules([anu_icon, monash_icon, rmit_icon]);
+
+});
