@@ -1,6 +1,0 @@
-The key thing
-
-<img class="thumbnail" src="https://download.lecture.unimelb.edu.au/echo360/1542/3/4751f6cb-9f55-4046-8205-8bedfc945a51/synopsis/low/00020000.jpg" title="Play Echo">
-
-The RE
-(?<=<img class="thumbnail" src="https://download\.lecture\.unimelb\.edu\.au/echo360/...././).*(?=/synopsis/low/........\.jpg" title="Play Echo">)

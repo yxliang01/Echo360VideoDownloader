@@ -1,42 +1,27 @@
 'use strict';
 
-var coursename;
+var course_name;
 
+/* Execution portal */
+fetchAndDownload();
 
-//Execution Part
-downloadVideos();
-
-//Functions
-
-// function checkWhetherLoaded() {
-
-//     if ($('#echoes-list').length !== 0) {
-//         console.info(window.location.href + '      has lecture info!!!');
-//         return true;
-//     } else {
-//         return false;
-//     }
-
-// }
-
-
-function downloadVideos() {
-
+function fetchAndDownload() {
     if (typeof $ === 'undefined') {
         return false;
     }
 
-    var ori_coursename = $('#course-info').text();
-    coursename = ori_coursename.replace(/[\/:*?"<>|]/gi, '-');
+    /* Get course name */
+    course_name = $('#course-info').text();
+    course_name = course_name.replace(/[\/:*?"<>|]/gi, '-');
 
-    //Start looking for download URL
+    /* Revised selector */
+    var elements = $('div.echo-li-left-wrapper > div.echo-thumbnail > div > img');
 
-    // console.log("start downloading...");
-    var elements = $('*[id^="li-"] > div.echo-li-left-wrapper > div.echo-thumbnail > div > img');
-
+    /* Fetch out video URLs and start downloading */
     if (elements.length === 0) {
         return false;
     } else {
+        /* Get the table header content (on the right corner) */
         var str_num_results = $("#echoes-header-toolbar-right").text();
         var matchings = str_num_results.match("([0-9]+) of ([0-9]+) Results");
 
@@ -45,35 +30,30 @@ function downloadVideos() {
         } else if (matchings[1] !== matchings[2]) {
             return "Please scroll down the recording selection list in order to download";
         } else {
-            elements.each(downloadARecording);
+            elements.each(downloadOneFile);
             return elements.length;
         }
-
     }
 
 }
 
-
-function downloadARecording(idx, val) {
-
+function downloadOneFile(idx, val) {
     var matching;
-
     if ((matching = $(val).attr('src').match('([A-Za-z0-9\-\/\.\:]+)(?:\/synopsis\/low\/[0-9]+\.jpg)')) === null){
         alert('Error occured when trying to download the video!');
         return;
     } else {
-
-        var part1URL = matching[1];
+        /* Process path and file name */
+        var path = matching[1];
         var name_selector = "#li-" + (idx + 1) + " > div.echo-li-left-wrapper > div.title-wrapper > div.echo-meta-wrapper > div.echo-date";
-        var name_recording = $(name_selector).text();
+        var date_and_time = $(name_selector).text();
+        date_and_time = date_and_time.replace(':', '.');
 
-        name_recording = name_recording.replace(':', '.');
-
+        /* Send the download request to Chrome runtime */
         chrome.runtime.sendMessage({
-            url: part1URL + '/audio-vga.m4v',
-            filename: coursename + '/' + name_recording + '.m4v',
+            url: path + '/audio-vga.m4v',
+            filename: course_name + '/' + date_and_time + '.m4v',
             conflictAction: "overwrite"
         });
-
     }
 }

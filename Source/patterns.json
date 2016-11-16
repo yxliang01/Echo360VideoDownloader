@@ -1,0 +1,26 @@
+[
+    {
+        "abbr": "UniMelb",
+        "url": "https://app.lms.unimelb.edu.au/webapps/blackboard/content/contentWrapper.jsp",
+        "icon_128": "icon128_unimelb.png",
+        "fetchScript": "fetchEcho360.js"
+    }, 
+    {
+        "abbr": "UniMelb Alternative Access",
+        "url": "https://edtech.le.unimelb.edu.au/echo360/index.jsp",
+        "icon_128": "icon128_unimelb.png",
+        "fetchScript": "fetchAlternative.js"
+    }, 
+    {
+        "abbr": "Monash",
+        "url": "https://mulo-portal.lib.monash.edu/ess/portal/section/",
+        "icon_128": "icon128_monash.png",
+        "fetchScript": "fetchEcho360.js"
+    }, 
+    {
+        "abbr": "ANU",
+        "url": "https://wattlecourses.anu.edu.au/blocks/echo360_echocenter/echocenter_frame.php",
+        "icon_128": "icon128_anu.png",
+        "fetchScript": "fetchEcho360.js"
+    }
+]

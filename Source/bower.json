@@ -1,10 +1,11 @@
 {
-  "name": "echo360videodownloader",
+  "name": "Echo360VideoDownloader",
   "homepage": "https://github.com/yxliang01/Echo360VideoDownloader",
   "authors": [
-    "yxliang01 <13267.okk@gmail.com>"
+    "yxliang01 <13267.okk@gmail.com>",
+    "nekketsuing <myprivatedisk@gmail.com>"
   ],
-  "description": "This extension allows you to download all the recordings available in current page",
+  "description": "This extension enables you to download all the recordings available in current page",
   "main": "",
   "license": "GNU GPL V3",
   "ignore": [
