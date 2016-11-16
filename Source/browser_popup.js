@@ -13,19 +13,12 @@ $.fn.successful = function status_successful() {
 };
 
 $(document).ready(function() {
-    $("#options_naming > option").popup();
-    $(".ui.dropdown").dropdown();
-    $("#options_naming").change($.proxy(onNamingOptionChanged));
-
     $("button#btn_download").click(function() {
-
         chrome.tabs.query({
             active: true,
             currentWindow: true
         }, checkEligibility);
     });
-
-    $('.ui.modal').modal();
 });
 
 function onNamingOptionChanged(context) {
@@ -71,15 +64,21 @@ function checkEligibility(tabs) {
 
 function injectFetchScript(fetchScript) {
     chrome.tabs.executeScript(null, {
-        file: "bower_components/jquery/dist/jquery.min.js",
+        file: "jquery.min.js",
         allFrames: true,
         runAt: "document_end"
-    }, function injectDownloadingScript() {
+    }, function () {
         chrome.tabs.executeScript(null, {
-            file: fetchScript,
+            code: "var filename_option = " + $("[name='r']")[1].checked + ";",
             allFrames: true,
             runAt: "document_end"
-        }, doneExecutingDownloadingScript);
+        }, function() {
+            chrome.tabs.executeScript(null, {
+                file: fetchScript,
+                allFrames: true,
+                runAt: "document_end"
+            }, doneExecutingDownloadingScript);
+        })
     });
 }
 

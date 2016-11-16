@@ -40,19 +40,26 @@ function fetchAndDownload() {
 function downloadOneFile(idx, val) {
     var matching;
     if ((matching = $(val).attr('src').match('([A-Za-z0-9\-\/\.\:]+)(?:\/synopsis\/low\/[0-9]+\.jpg)')) === null){
-        alert('Error occured when trying to download the video!');
+        alert('Error occured when trying to download the video');
         return;
     } else {
         /* Process path and file name */
         var path = matching[1];
         var name_selector = "#li-" + (idx + 1) + " > div.echo-li-left-wrapper > div.title-wrapper > div.echo-meta-wrapper > div.echo-date";
         var date_and_time = $(name_selector).text();
-        date_and_time = date_and_time.replace(':', '.');
+        date_and_time = date_and_time.replace(':', '-');
+
+        var _filename = "";
+        if (filename_option) {
+            _filename = course_name + '/' + idx + '_' + date_and_time + '.m4v';
+        } else {
+            _filename = course_name + '/' + date_and_time + '.m4v';
+        }
 
         /* Send the download request to Chrome runtime */
         chrome.runtime.sendMessage({
             url: path + '/audio-vga.m4v',
-            filename: course_name + '/' + date_and_time + '.m4v',
+            filename: _filename,
             conflictAction: "overwrite"
         });
     }

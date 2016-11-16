@@ -5,25 +5,25 @@ var currentDT = null;
 /* jshint unused:vars */
 chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
     if (message.url && message.filename) {
-        console.log("Start downloading 1 video.");
+        console.log("Start downloading 1 video");
         chrome.downloads.download(message, whenDownloadStatusChanged);
     } else {
-        console.log("Invalid message received.");
+        console.log("Invalid message received");
     }
 });
 
 function whenDownloadStatusChanged(downloadId) {
     if (downloadId === undefined) {
         var NotificationOptions = {
-            title: "One file's download failed.",
-            message: "You may wish to download it again.",
+            title: "One file's download failed",
+            message: "You may wish to download it again",
             isClickable: false,
             requireInteraction: true,
             type: "basic",
             iconUrl: "icon128_unimelb.png"
         };
 
-        chrome.notifications.create("One download failed.", NotificationOptions);
+        chrome.notifications.create("One download failed", NotificationOptions);
     } else {
         chrome.downloads.search({
             id: downloadId
@@ -33,15 +33,15 @@ function whenDownloadStatusChanged(downloadId) {
                 currentDT.num_completed++;
                 if (currentDT.num_completed == currentDT.num_files) {
                     var NotificationOptions = {
-                        title: "All recordings are completely downloaded.",
-                        message: "Click here to open the downloads folder.",
+                        title: "All recordings are completely downloaded",
+                        message: "Click here to open the downloads folder",
                         isClickable: true,
                         requireInteraction: true,
                         type: "basic",
                         iconUrl: "icon128.png"
                     };
 
-                    chrome.notifications.create("Download accomplished.", NotificationOptions);
+                    chrome.notifications.create("Download accomplished", NotificationOptions);
                 }
             }
         });
