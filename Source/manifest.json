@@ -1,14 +1,14 @@
 {
-    "version": "1.0.9",
-    "manifest_version": 2,
+    "version": "1.1.0",
+    "manifest_version": 3,
 
-    "name": "Unimelb(Monash/ANU) Recording Downloader",
-    "description": "This extension allows you to download all the recordings available in the current recording download page on different university websites",
+    "name": "UniMelb(Monash/ANU) Recording Downloader",
+    "description": "This extension enables you to download all the recordings available in the current recording download page on different university websites.",
     "icons": {
         "128": "icon128_unimelb.png"
     },
     "browser_action": {
-        "default_title": "Download all the recordings available in current page!",
+        "default_title": "Download all the recordings available on the recording-list page",
         "default_icon": { "128": "icon128_unimelb.png" },
         "default_popup": "browser_popup.html"
     },
@@ -21,7 +21,7 @@
 
     ,
     "background": {
-        "scripts": ["eventpage.js"],
+        "scripts": ["downloadManager.js"],
         "persistent": false
     }
 }
