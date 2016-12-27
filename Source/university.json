@@ -1,18 +1,18 @@
 [{
         "abbr": "Unimelb",
-        "url": "https://app.lms.unimelb.edu.au/webapps/blackboard/content/contentWrapper.jsp",
+        "url": "lms.unimelb.edu.au",
         "icon_128": "icon128_unimelb.png"
     }, {
         "abbr": "Monash",
-        "url": "https://mulo-portal.lib.monash.edu/ess/portal/section/",
+        "url": "monash.edu",
         "icon_128": "icon128_monash.png"
     }, {
         "abbr": "ANU",
-        "url": "https://wattlecourses.anu.edu.au/blocks/echo360_echocenter/echocenter_frame.php",
+        "url": "anu.edu.au",
         "icon_128": "icon128_anu.png"
     }, {
         "abbr": "UNSW",
-        "url": "https://lectures.unsw.edu.au/ess/portal/section/",
+        "url": "unsw.edu.au",
         "icon_128": "icon128_unsw.png"
     }
 ]
