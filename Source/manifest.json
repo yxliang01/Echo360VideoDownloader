@@ -16,7 +16,8 @@
         "activeTab",
         "downloads",
         "*://*/*",
-        "notifications"
+        "notifications",
+        "declarativeContent"
     ]
 
     ,
