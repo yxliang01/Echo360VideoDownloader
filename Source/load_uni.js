@@ -1,68 +1,27 @@
 // Load the json file
+// currently just copy and paste the contents
 var unis = [{
         "abbr": "Unimelb",
-        "url": "https://app.lms.unimelb.edu.au/webapps/blackboard/content/contentWrapper.jsp",
+        "url": "lms.unimelb.edu.au",
         "icon_128": "icon128_unimelb.png"
     }, {
         "abbr": "Monash",
-        "url": "https://mulo-portal.lib.monash.edu/ess/portal/section/",
+        "url": "monash.edu",
         "icon_128": "icon128_monash.png"
     }, {
         "abbr": "ANU",
-        "url": "https://wattlecourses.anu.edu.au/blocks/echo360_echocenter/echocenter_frame.php",
+        "url": "anu.edu.au",
         "icon_128": "icon128_anu.png"
     }, {
+        "abbr": "UNSW",
+        "url": "unsw.edu.au",
+        "icon_128": "icon128_unsw.png"
+    }, {
         "abbr": "RMIT",
-        "url": "",
+        "url": "rmit.edu.au",
         "icon_128": "icon128_rmit.png"
     }
 ]
-
-// var unimelb_icon = 
-// {
-//     conditions : [
-//     new chrome.declarativeContent.PageStateMatcher({
-//         pageUrl: {urlContains: "unimelb"}
-//     })
-//     ],
-//     actions    : [ new chrome.declarativeContent.SetIcon({
-//         path : {"128": "icon128_unimelb.png"}
-//     })]
-// };
-
-// var anu_icon = 
-// {
-//     conditions : [
-//     new chrome.declarativeContent.PageStateMatcher({
-//         pageUrl: {urlContains: "anu"}
-//     })
-//     ],
-//     actions    : [ new chrome.declarativeContent.SetIcon({
-//         path : {"128": "icon128_anu.png"}
-//     })]
-// };
-
-// var monash_icon = 
-// {
-//     conditions : [
-//     new chrome.declarativeContent.PageStateMatcher({
-//         pageUrl: {urlContains: "monash"}
-//     })
-//     ],
-//     actions    : [ new chrome.declarativeContent.SetIcon({
-//         path : {"128" : "icon128_monash.png"}
-//     }) ]
-// };
-
-// var rmit_icon = 
-// {
-//     conditions : [
-//     new chrome.declarativeContent.PageStateMatcher({
-//         pageUrl: {urlContains: "rmit"}
-//     })
-//     ],
-//     actions    : [ new chrome.declarativeContent.SetIcon({path : {"128" : "icon128_rmit.png"} }) ] 
-// };
 
 // Create an array to store the rules about when to change the icons
 var uniIconRules = [];
@@ -73,36 +32,23 @@ parseUniversities(unis);
 chrome.runtime.onInstalled.addListener(function(details) {
     chrome.declarativeContent.onPageChanged.removeRules(undefined, function() {
         // Change the icon according to the domain name
-        // var unis = getUniData();
-
-        // var rules = parseUniversities(unis);
-        // console.log(JSON.stringify(rules[0]));
-
-        // var iconRules = generateIconRules();
-        // var iconRules2 = [unimelb_icon, anu_icon, monash_icon, rmit_icon];
-        // console.log("Icon rules:");
-        // console.dir(iconRules);
-        // console.log("Icon rules 2:");
-        // console.log(JSON.stringify(iconRules2[0]));
-
         chrome.declarativeContent.onPageChanged.addRules(uniIconRules);
-        console.log("yeah i did it");
     })
 });
 
-// Create a list of JSON objects to represent the rules
-function generateIconRules() {
-    // parse the json and create rules for each univerisity
-    var unis = getUniData();
-    var rules = [];
-    rules = parseUniversities(unis);
-    return rules;
-}
+// // Create a list of JSON objects to represent the rules
+// function generateIconRules() {
+//     // parse the json and create rules for each univerisity
+//     var unis = getUniData();
+//     var rules = [];
+//     rules = parseUniversities(unis);
+//     return rules;
+// }
 
 // The function below uses synchronous XMLHttpRequest to get the contents of university.json
 // However synchronous XMLHttpRequest was deprecated
 // Get and parse the contents of univerisity.json file
-function getUniData(input, output, callback) {
+function getUniData() {
     // var unis;
 
     var xhr = new XMLHttpRequest();
@@ -151,7 +97,7 @@ function parseUniversities(unis) {
                         }));
         uniIconRules.push({
             conditions : [ new chrome.declarativeContent.PageStateMatcher({
-                                pageUrl: {urlContains: unis[index].abbr.toLowerCase()}
+                                pageUrl: {urlContains: unis[index].url}
                         })
             ],
             actions    :[ new chrome.declarativeContent.SetIcon({
