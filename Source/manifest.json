@@ -22,7 +22,7 @@
 
     ,
     "background": {
-        "scripts": ["load_uni.js", "eventpage.js"],
+        "scripts": ["change_uni_icons.js", "eventpage.js"],
         "persistent": false
     }
 }
