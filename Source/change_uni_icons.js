@@ -1,43 +1,21 @@
-// Load the json file
-// currently just copy and paste the contents
-// var unis = [{
-//         "abbr": "Unimelb",
-//         "url": "lms.unimelb.edu.au",
-//         "icon_128": "icon128_unimelb.png"
-//     }, {
-//         "abbr": "Monash",
-//         "url": "monash.edu",
-//         "icon_128": "icon128_monash.png"
-//     }, {
-//         "abbr": "ANU",
-//         "url": "anu.edu.au",
-//         "icon_128": "icon128_anu.png"
-//     }, {
-//         "abbr": "UNSW",
-//         "url": "unsw.edu.au",
-//         "icon_128": "icon128_unsw.png"
-//     }, {
-//         "abbr": "RMIT",
-//         "url": "rmit.edu.au",
-//         "icon_128": "icon128_rmit.png"
-//     }
-// ]
+/* A small feature that changes the logo of universities,
+ * when the user goes to websites of other supported universities */
 
-// Read from the local file (univeristy.json)
+// Read the univeristy.json file
 var unis = [];
 getUniData();
 
 // Load the content of the overlay image, i.e. the floppy disk sign
-// const overlay = loadImage("icon128_overlay.png");
+// var iconsContexts = [];
+// createIcon(unis);
 
 // Create an array to store the rules about when to change the icons
 var uniIconRules = [];
-var iconsContexts = [];
 
-// createIcon(unis);
-parseUniversities(unis);
+// Create rules for each univerisity, update the uniIconRules array
+createRules(unis);
 
-// Main thread
+// Main part
 chrome.runtime.onInstalled.addListener(function(details) {
     chrome.declarativeContent.onPageChanged.removeRules(undefined, function() {
         // Change the icon according to the domain name
@@ -49,6 +27,7 @@ chrome.runtime.onInstalled.addListener(function(details) {
 // to get the contents of university.json
 // However synchronous XMLHttpRequest was deprecated, but still usable
 // Get and parse the contents of univerisity.json file
+// May change to JQuery if background.html is used
 function getUniData() {
     var xhr = new XMLHttpRequest();
 
@@ -64,7 +43,7 @@ function getUniData() {
 }
 
 /* The function below is used for loading the university.json file,
- * however it is unused because it's asynchronized */
+ * unused because it's asynchronized */
 function getUniData2() {
     chrome.runtime.getPackageDirectoryEntry(function(root) {
         root.getFile("university.json", {}, function(fileEntry) {
@@ -81,7 +60,7 @@ function getUniData2() {
 }
 
 // Create rules for each univerisity
-function parseUniversities(unis) {
+function createRules(unis) {
     // add the rules to change icons according to the university abbreviations
     for (var index in unis) {
         // console.log(unis[index].icon_128);
@@ -100,44 +79,47 @@ function parseUniversities(unis) {
     }
 }
 
-// Reference: https://stackoverflow.com/questions/29056704/google-chrome-extension-canvas-icon
-function createIcon(unis) {
-    const overlay = "icon128_overlay.png";
-    var canvas;
-    var context;
-    for (var index in unis) {
-        canvas = document.createElement('canvas'); // Create the canvas
-        // Set both height and width to 128, however it wil be scaled to 19x19 eventually
-        canvas.width = 128;
-        canvas.height = 128;
-        window["canvas"+index] = canvas;
+// Next step: dynamically generate the icons using canvas elements, not done yet
+// Useful links: https://stackoverflow.com/questions/29056704/google-chrome-extension-canvas-icon
+// function createIcon(unis) {
+//     const overlay = "icon128_overlay.png";
+//     var canvas;
+//     var context;
+//     for (var index in unis) {
+//         canvas = document.createElement('canvas'); // Create the canvas
+//         // Set both height and width to 128, however it wil be scaled to 19x19 eventually
+//         canvas.width = 128;
+//         canvas.height = 128;
+//         window["canvas"+index] = canvas;
         
-        context = canvas.getContext('2d');
-        // Get the back ground icon (the logo of unis)
-        var img = loadImage(unis[index].icon_128, context);
-        // context.drawImage(img, 0, 0);
-        debugShowCanvas(canvas);
+//         context = canvas.getContext('2d');
+//         // Get the back ground icon (the logo of unis)
+//         var img = loadImage(unis[index].icon_128, context);
+//         // context.drawImage(img, 0, 0);
+//         debugShowCanvas(canvas);
 
-        // Draw the overlay above the background
-        // loadImage(overlay);
-        // context.drawImage(overlay, 0, 0);
-        // debugShowCanvas(canvas);
+//         // Draw the overlay above the background
+//         // loadImage(overlay);
+//         // context.drawImage(overlay, 0, 0);
+//         // debugShowCanvas(canvas);
 
-        iconsContexts.push(context);
-    }   
-}
+//         iconsContexts.push(context);
+//     }   
+// }
 
-function loadImage(imgPath, context) {
-    var image = new Image(128, 128);
-    image.onload = function () {
-        context.drawImage(image, 0, 0);
-    };
-    image.src = imgPath;
+// Not used
+// function loadImage(imgPath, context) {
+//     var image = new Image(128, 128);
+//     image.onload = function () {
+//         context.drawImage(image, 0, 0);
+//     };
+//     image.src = imgPath;
 
-    return image;
-}
+//     return image;
+// }
 
-function debugShowCanvas(canvas) {
-    var img = canvas.toDataURL("image/png");
-    console.log(img);
-}
+// Not used
+// function debugShowCanvas(canvas) {
+//     var img = canvas.toDataURL("image/png");
+//     console.log(img);
+// }
