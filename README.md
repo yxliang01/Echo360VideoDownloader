@@ -24,8 +24,8 @@ TODO
 Contributions
 =====
 
-Xiao Liang Yu - Main developer and creator of this extension
-Taicheng Zhou - images
-mcpower - Support for Monash
-mlawrenson - Support for ANU
-Hugh Chan - Support for UNSW
+Xiao Liang Yu - Main developer and creator of this extension  
+Taicheng Zhou - images  
+mcpower - Support for Monash  
+mlawrenson - Support for ANU  
+Hugh Chan - Support for UNSW  
