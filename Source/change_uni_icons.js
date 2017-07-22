@@ -108,7 +108,7 @@ function createIcon(unis) {
     for (var index in unis) {
         canvas = document.createElement('canvas'); // Create the canvas
         // Set both height and width to 128, however it wil be scaled to 19x19 eventually
-        canvas.width = 128; 
+        canvas.width = 128;
         canvas.height = 128;
         window["canvas"+index] = canvas;
         
