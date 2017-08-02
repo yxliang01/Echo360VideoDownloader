@@ -68,7 +68,7 @@ function whenDownloadStatusChanged(downloadId) {
 //         async: true,
 //         url: url
 //     }).done(function whenFileSizeLoaded(data, status, xhr) {
-//      //TODO: dunno how to make a constructor function
+//         //TODO: dunno how to make a constructor function
 //         xhr.getResponseHeader('Content-Length');
 //     });
 // }
