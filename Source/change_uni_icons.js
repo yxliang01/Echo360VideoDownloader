@@ -17,6 +17,8 @@ createRules(unis);
 
 // Main part
 chrome.runtime.onInstalled.addListener(function(details) {
+    
+    
     chrome.declarativeContent.onPageChanged.removeRules(undefined, function() {
         // Change the icon according to the domain name
         chrome.declarativeContent.onPageChanged.addRules(uniIconRules);
