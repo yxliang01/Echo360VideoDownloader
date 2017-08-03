@@ -1,4 +1,4 @@
-/* A small feature that changes the logo of universities,
+/* A feature that changes the logo of universities,
  * when the user goes to websites of other supported universities */
 
 // Read the univeristy.json file
