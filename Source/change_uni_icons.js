@@ -42,6 +42,7 @@ function getUniData() {
     xhr.send();
 }
 
+// TODO: make use of this
 /* The function below is used for loading the university.json file,
  * unused because it's asynchronized */
 function getUniData2() {
@@ -51,7 +52,6 @@ function getUniData2() {
                 var reader = new FileReader();
                 reader.onloadend = function(e) {
                     unis = JSON.parse(this.result);
-                    // chrome.runtime.sendMessage();
                 };
                 reader.readAsText(file);
             });
@@ -63,9 +63,6 @@ function getUniData2() {
 function createRules(unis) {
     // add the rules to change icons according to the university abbreviations
     for (var index in unis) {
-        // console.log(unis[index].icon_128);
-        // Assume the abbreviation matches with their url
-        // and use those abbreviations as the conditions
         uniIconRules.push({
             conditions : [ new chrome.declarativeContent.PageStateMatcher({
                                 pageUrl: {urlContains: unis[index].url}
@@ -79,7 +76,7 @@ function createRules(unis) {
     }
 }
 
-// Next step: dynamically generate the icons using canvas elements, not done yet
+// TODO: Next step: dynamically generate the icons using canvas elements, not done yet
 // Useful links: https://stackoverflow.com/questions/29056704/google-chrome-extension-canvas-icon
 // function createIcon(unis) {
 //     const overlay = "icon128_overlay.png";
@@ -105,21 +102,4 @@ function createRules(unis) {
 
 //         iconsContexts.push(context);
 //     }   
-// }
-
-// Not used
-// function loadImage(imgPath, context) {
-//     var image = new Image(128, 128);
-//     image.onload = function () {
-//         context.drawImage(image, 0, 0);
-//     };
-//     image.src = imgPath;
-
-//     return image;
-// }
-
-// Not used
-// function debugShowCanvas(canvas) {
-//     var img = canvas.toDataURL("image/png");
-//     console.log(img);
 // }
