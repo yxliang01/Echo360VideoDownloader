@@ -12,8 +12,8 @@ chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
     }
 });
 
-
 function donwloadVideo(message) {
+    // console.info('Message ' + JSON.stringify(message) + '	start downloading');
     chrome.downloads.download(message, whenDownloadStatusChanged);
 }
 
@@ -68,7 +68,7 @@ function whenDownloadStatusChanged(downloadId) {
 //         async: true,
 //         url: url
 //     }).done(function whenFileSizeLoaded(data, status, xhr) {
-//     	//TODO: dunno how to make a constructor function
+//         //TODO: dunno how to make a constructor function
 //         xhr.getResponseHeader('Content-Length');
 //     });
 // }

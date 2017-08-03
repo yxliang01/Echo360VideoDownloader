@@ -14,5 +14,9 @@
         "abbr": "UNSW",
         "url": "unsw.edu.au",
         "icon_128": "icon128_unsw.png"
+    }, {
+        "abbr": "RMIT",
+        "url": "rmit.edu.au",
+        "icon_128": "icon128_rmit.png"
     }
 ]

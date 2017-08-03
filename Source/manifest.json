@@ -16,12 +16,13 @@
         "activeTab",
         "downloads",
         "*://*/*",
-        "notifications"
+        "notifications",
+        "declarativeContent"
     ]
 
     ,
     "background": {
-        "scripts": ["eventpage.js"],
+        "scripts": ["change_uni_icons.js", "eventpage.js"],
         "persistent": false
     }
 }
